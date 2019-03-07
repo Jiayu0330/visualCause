@@ -4,9 +4,17 @@ var drawChart = function(meanData)
 {
   var width = 1100;
   var height = 320;
-  var barWidth = width/meanData.length;
+  console.log(meanData.length)
+  var length = meanData.length;
+  var barWidth = width/length;
   var barHeight = 55; /*height of bar*/
-  console.log(barWidth);
+
+  var rectXscale = d3.scaleLinear()
+                     .domain([0,length - 1])
+                     .range([115,115 + barWidth*(length - 1)]);
+  var textXscale = d3.scaleLinear()
+                     .domain([0,length - 1])
+                     .range([118.5,118.5 + barWidth*(length - 1)]);
 
   var svg = d3.select("svg")
               .attr("width",width + 200)
@@ -18,7 +26,8 @@ var drawChart = function(meanData)
      .append("rect")
      .attr("x",function(d,i)
      {
-       return 115 + i * barWidth;
+       /*console.log(rectXscale(i));*/
+       return rectXscale(i);
      })
      .attr("y",function(d)
      {
@@ -44,7 +53,7 @@ var drawChart = function(meanData)
      })
      .attr("x",function(d,i)
      {
-       return 118.5 + i * barWidth;
+       return textXscale(i);
      })
      .attr("y",function(d,i)
      {
