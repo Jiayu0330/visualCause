@@ -9,3 +9,15 @@
 .description{
       margin-left: 38%;
 }
+
+.description a{
+  margin-left: 11.5%;
+  color: #484F4D
+  text-decoration: underline;
+  display: block;
+  transition: 0.3s;
+}
+
+.description a:hover{
+  color: #FFFFFF;
+}
